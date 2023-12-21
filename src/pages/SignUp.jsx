@@ -8,15 +8,15 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { useState } from "react";
 
 export default function SignUp() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    
   };
 
   return (
@@ -46,6 +46,8 @@ export default function SignUp() {
                 label="User Name"
                 name="lastName"
                 autoComplete="family-name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -56,6 +58,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -67,6 +71,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -80,7 +86,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
