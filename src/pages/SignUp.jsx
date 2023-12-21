@@ -9,16 +9,37 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
+import axios from "axios";
+// import  contextHook  from "../hooks/useHook";
+// import { useContext } from "react";
+// import AuthContext from "../useContext/authContext";
 
 export default function SignUp() {
-  const [userName, setUserName] = useState("");
+  const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (event) => {
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    const data = {
+      name,
+      email,
+      password,
+      passwordConfirm,
+    };
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/users/signup",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -46,7 +67,7 @@ export default function SignUp() {
                 label="User Name"
                 name="lastName"
                 autoComplete="family-name"
-                value={userName}
+                value={name}
                 onChange={(e) => setUserName(e.target.value)}
               />
             </Grid>
@@ -73,6 +94,19 @@ export default function SignUp() {
                 autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </Grid>
           </Grid>
