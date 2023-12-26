@@ -11,28 +11,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import axios from "axios";
+import { useHook } from "../hooks/useHook";
 
 export default function SignIn() {
+  const { login } = useHook();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const data = { email, password };
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/users/login",
-        data,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    login(email, password);
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
