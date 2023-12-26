@@ -24,6 +24,7 @@ function AuthProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
+    console.log(user);
   };
   const login = async (email, password) => {
     const data = { email, password };
@@ -35,8 +36,8 @@ function AuthProvider({ children }) {
           withCredentials: true,
         }
       );
-    setUser(res.data)
-      localStorage.setItem("jwt", res?.data?.data?.token)
+      setUser(res.data);
+      localStorage.setItem("jwt", res?.data?.data?.token);
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,13 +14,15 @@ import { useState } from "react";
 import { useHook } from "../hooks/useHook";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const { login } = useHook();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     login(email, password);
+    navigate("/");
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -78,7 +80,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="/forgotpassword" variant="body2">
                 Forgot password?
               </Link>
             </Grid>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,15 +12,20 @@ import { useState } from "react";
 import { useHook } from "../hooks/useHook";
 
 export default function SignUp() {
-  const { signup } = useHook()
+  const navigate = useNavigate();
+  const { signup } = useHook();
   const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    signup(name, email, password, passwordConfirm)
-    console.log(signup)
+    if (password === passwordConfirm) {
+      signup(name, email, password, passwordConfirm);
+      navigate('/login')
+    } else {
+      console.log("password does not match");
+    }
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -85,7 +90,7 @@ export default function SignUp() {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
+                id="passwordConfirm"
                 autoComplete="new-password"
                 value={passwordConfirm}
                 onChange={(e) => setPasswordConfirm(e.target.value)}
