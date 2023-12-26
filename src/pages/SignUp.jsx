@@ -9,36 +9,18 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import axios from "axios";
-// import  contextHook  from "../hooks/useHook";
-// import { useContext } from "react";
-// import AuthContext from "../useContext/authContext";
+import { useHook } from "../hooks/useHook";
 
 export default function SignUp() {
+  const { signup } = useHook()
   const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
-      name,
-      email,
-      password,
-      passwordConfirm,
-    };
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/users/signup",
-        data,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    signup(name, email, password, passwordConfirm)
+    console.log(signup)
   };
   return (
     <Container component="main" maxWidth="xs">
