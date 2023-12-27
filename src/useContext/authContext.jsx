@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -42,15 +43,36 @@ function AuthProvider({ children }) {
       console.log(error);
     }
   };
-  const logout= async() => {
-    localStorage.removeItem('jwt')
-  }
+  const logout = async () => {
+    localStorage.removeItem("jwt");
+  };
+  const resetPassword = async (password, passwordConfirm) => {
+    const { token } = useParams();
+    try {
+      const data = {
+        password,
+        passwordConfirm,
+      };
+      console.log(data);
+      const res = await axios.patch(
+        `http://localhost:3000/api/users/resetPassword/${token}`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   console.log(user, "user");
   const valueToShare = {
     signup,
     login,
     user,
-    logout
+    logout,
+    resetPassword,
   };
   return (
     <AuthContext.Provider value={valueToShare}>{children}</AuthContext.Provider>

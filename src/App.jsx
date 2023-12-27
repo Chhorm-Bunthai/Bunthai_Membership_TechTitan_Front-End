@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import PrivateRoutes from "./pages/PrivateRoutes";
 import Profile from "./pages/Profile";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route  path="/forgotpassword" element={<ForgotPassword />} />
+        <Route  path="/resetPassword/:token" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );
