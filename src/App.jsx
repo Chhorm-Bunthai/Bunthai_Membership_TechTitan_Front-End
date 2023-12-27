@@ -12,9 +12,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<HomePage />} />
+          <Route  path="/" element={<HomePage />} />
           <Route path="/profile" element={<Profile />}/>
-        </Route>
+        </Route>      
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route  path="/forgotpassword" element={<ForgotPassword />} />

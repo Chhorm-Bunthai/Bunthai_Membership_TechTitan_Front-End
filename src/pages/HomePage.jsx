@@ -6,8 +6,13 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { useHook } from "../hooks/useHook";
 
 export default function HomePage() {
+  const { logout } = useHook();
+  const handleClick = () => {
+    logout();
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,8 +30,8 @@ export default function HomePage() {
             News
           </Typography>
           <Link to="/login">
-            <Button color="inherit" >
-              Login
+            <Button color="inherit" onClick={handleClick}>
+              lOGOUT
             </Button>
           </Link>
         </Toolbar>

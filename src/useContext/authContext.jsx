@@ -42,11 +42,15 @@ function AuthProvider({ children }) {
       console.log(error);
     }
   };
+  const logout= async() => {
+    localStorage.removeItem('jwt')
+  }
   console.log(user, "user");
   const valueToShare = {
     signup,
     login,
     user,
+    logout
   };
   return (
     <AuthContext.Provider value={valueToShare}>{children}</AuthContext.Provider>
