@@ -10,8 +10,8 @@ import { useHook } from "../hooks/useHook";
 
 export default function HomePage() {
   const { logout } = useHook();
-  const handleClick = () => {
-    logout();
+  const handleClick = async () => {
+    await logout();
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -27,10 +27,10 @@ export default function HomePage() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Above and Beyond
           </Typography>
           <Link to="/login">
-            <Button color="inherit" onClick={handleClick}>
+            <Button style={{ color: "white" }} onClick={handleClick}>
               lOGOUT
             </Button>
           </Link>

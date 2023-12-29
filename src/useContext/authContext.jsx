@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
+
   const [user, setUser] = useState(null);
   const signup = async (name, email, password, passwordConfirm) => {
     const data = {
@@ -46,8 +47,7 @@ function AuthProvider({ children }) {
   const logout = async () => {
     localStorage.removeItem("jwt");
   };
-  const resetPassword = async (password, passwordConfirm) => {
-    const { token } = useParams();
+  const resetPassword = async (password, passwordConfirm, token) => {
     try {
       const data = {
         password,

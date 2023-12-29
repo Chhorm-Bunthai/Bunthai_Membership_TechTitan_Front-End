@@ -19,9 +19,9 @@ export default function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(email, password);
+    await login(email, password);
     navigate("/");
   };
   return (

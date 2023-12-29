@@ -6,11 +6,15 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useHook } from "../hooks/useHook";
+// import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
   const { resetPassword } = useHook();
+  const { token } = useParams();
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -31,7 +35,7 @@ const ResetPassword = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    resetPassword(password, passwordConfirm);
+    await resetPassword(password, passwordConfirm, token);
     navigate('/login')
 
   };

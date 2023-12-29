@@ -21,7 +21,7 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password === passwordConfirm) {
-      signup(name, email, password, passwordConfirm);
+      await signup(name, email, password, passwordConfirm);
       navigate('/login')
     } else {
       console.log("password does not match");
