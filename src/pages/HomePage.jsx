@@ -53,7 +53,7 @@ export default function HomePage() {
               Above and Beyond
             </Typography>
             <Link to="/login">
-              <Button style={{ color: "white" }} onClick={handleClick}>
+              <Button style={{ color: "white" }} onClick={handleProfileClick}>
                 {user}
               </Button>
             </Link>
