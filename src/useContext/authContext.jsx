@@ -65,6 +65,23 @@ function AuthProvider({ children }) {
       console.log(e);
     }
   };
+  const forgetPassword = async (email)=>{
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/users/forgotpassword",
+        {email},
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res.data.status === 'success');
+      // if (res.data.status){
+      //   navigate('/login')
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   console.log(user, "user");
   const valueToShare = {
     signup,
@@ -72,6 +89,7 @@ function AuthProvider({ children }) {
     user,
     logout,
     resetPassword,
+    forgetPassword,
   };
   return (
     <AuthContext.Provider value={valueToShare}>{children}</AuthContext.Provider>

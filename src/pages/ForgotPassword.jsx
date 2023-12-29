@@ -5,25 +5,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import axios from "axios";
+import { useHook } from "../hooks/useHook";
 
 export default function forgotpassword() {
+  const { forgetPassword } = useHook();
   const [email, setEmail] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = { email };
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/users/forgotpassword",
-        data,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    await forgetPassword(email);
+    
+    
   };
 
   return (
