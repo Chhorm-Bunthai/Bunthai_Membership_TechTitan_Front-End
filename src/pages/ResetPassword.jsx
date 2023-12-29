@@ -11,8 +11,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-    // const navigate = useNavigate();
-  const { resetPassword } = useHook();
+  // const navigate = useNavigate();
+  const { resetPassword, user } = useHook();
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -36,8 +36,9 @@ const ResetPassword = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await resetPassword(password, passwordConfirm, token);
-    navigate('/login')
-
+    if (user) {
+      // navigate("/login");
+    }
   };
 
   return (
@@ -104,7 +105,7 @@ const ResetPassword = () => {
             ),
           }}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
           Reset Password
         </Button>
       </form>

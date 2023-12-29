@@ -52,7 +52,6 @@ function AuthProvider({ children }) {
         password,
         passwordConfirm,
       };
-      console.log(data);
       const res = await axios.patch(
         `http://localhost:3000/api/users/resetPassword/${token}`,
         data,
@@ -60,16 +59,17 @@ function AuthProvider({ children }) {
           withCredentials: true,
         }
       );
-      console.log(res);
+      console.log(res.data.data.token, "us");
+      localStorage.setItem("jwt", res.data.data.token);
     } catch (e) {
       console.log(e);
     }
   };
-  const forgetPassword = async (email)=>{
+  const forgetPassword = async (email) => {
     try {
       const res = await axios.post(
         "http://localhost:3000/api/users/forgotpassword",
-        {email},
+        { email },
         {
           withCredentials: true,
         }
@@ -78,11 +78,11 @@ function AuthProvider({ children }) {
       // if (res.data.status){
       //   navigate('/login')
       // }
-      setUser(res.data.status)
+      setUser(res.data.status);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   console.log(user, "user");
   const valueToShare = {
     signup,
