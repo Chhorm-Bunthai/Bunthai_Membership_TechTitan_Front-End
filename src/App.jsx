@@ -5,6 +5,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import PrivateRoutes from "./pages/PrivateRoutes";
 import Profile from "./pages/Profile";
+import Success from "./pages/success";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResetPassword from "./pages/ResetPassword";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
+        <Route path='/success' element={<Success />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -74,10 +74,11 @@ function AuthProvider({ children }) {
           withCredentials: true,
         }
       );
-      console.log(res.data.status === 'success');
+      console.log(res.data.status);
       // if (res.data.status){
       //   navigate('/login')
       // }
+      setUser(res.data.status)
     } catch (error) {
       console.log(error);
     }
