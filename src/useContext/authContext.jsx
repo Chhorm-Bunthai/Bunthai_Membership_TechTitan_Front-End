@@ -1,11 +1,9 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 
-
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-
   const [user, setUser] = useState(null);
   const signup = async (name, email, password, passwordConfirm) => {
     const data = {
@@ -39,7 +37,8 @@ function AuthProvider({ children }) {
         }
       );
       setUser(res.data);
-      localStorage.setItem("jwt", res?.data?.data?.token);
+      // console.log(res.data.data, "hh");
+      localStorage.setItem("jwt", JSON.stringify(res?.data?.data));
     } catch (error) {
       console.log(error);
     }
