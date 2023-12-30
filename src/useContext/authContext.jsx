@@ -60,7 +60,9 @@ function AuthProvider({ children }) {
         }
       );
       console.log(res.data.data.token, "us");
-      localStorage.setItem("jwt", res.data.data.token);
+      // localStorage.setItem("jwt", res.data.data.token);
+      setUser(res?.data?.data)
+      return true;
     } catch (e) {
       console.log(e);
     }

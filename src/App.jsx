@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Success from "./pages/success";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResetPassword from "./pages/ResetPassword";
+import ResetModalSuccess from "./pages/ResetModalSuccess";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path='/success' element={<Success />}/>
+        <Route path="/resetSuccess" element={<ResetModalSuccess />}/>
       </Routes>
     </BrowserRouter>
   );

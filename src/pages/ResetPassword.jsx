@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-  // const navigate = useNavigate();
   const { resetPassword, user } = useHook();
   const { token } = useParams();
   const navigate = useNavigate();
@@ -33,11 +32,24 @@ const ResetPassword = () => {
     event.preventDefault();
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   await resetPassword(password, passwordConfirm, token);
+  //   console.log(user, "dddd");
+  //   if (user) {
+  //     navigate("/resetSuccess");
+  //   }
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await resetPassword(password, passwordConfirm, token);
-    if (user) {
-      // navigate("/login");
+    const isResetSuccessful = await resetPassword(
+      password,
+      passwordConfirm,
+      token
+    );
+    console.log(isResetSuccessful, "ddss");
+    if (isResetSuccessful) {
+      navigate("/resetSuccess");
     }
   };
 
