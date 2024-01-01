@@ -31,15 +31,6 @@ const ResetPassword = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   await resetPassword(password, passwordConfirm, token);
-  //   console.log(user, "dddd");
-  //   if (user) {
-  //     navigate("/resetSuccess");
-  //   }
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const isResetSuccessful = await resetPassword(
@@ -57,10 +48,23 @@ const ResetPassword = () => {
     <Container
       component="main"
       maxWidth="xs"
-      style={{ marginTop: "100px", padding: "20px" }}
+      style={{
+        marginTop: "100px",
+        // padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
-      <Typography variant="h4">Reset Password</Typography>
-      <Typography>Please Enter your new password</Typography>
+      <Typography component="h1" variant="h4">
+        New Password
+      </Typography>
+      <Typography
+        component="h1"
+        sx={{ fontWeight: 500, mt: 1, textAlign: "center" }}
+      >
+        Please enter your new password
+      </Typography>
       <form onSubmit={handleSubmit} style={{ marginTop: "10px" }}>
         <TextField
           onChange={(e) => setPassword(e.target.value)}
@@ -69,6 +73,7 @@ const ResetPassword = () => {
           required
           fullWidth
           variant="outlined"
+          helperText="required"
           id="password"
           label="Password"
           type={showPassword ? "text" : "password"}
@@ -89,13 +94,13 @@ const ResetPassword = () => {
             ),
           }}
         />
-
         <TextField
-          style={{ marginBottom: "30px" }}
+          style={{ marginBottom: "10px" }}
           onChange={(e) => setPasswordConfirm(e.target.value)}
           value={passwordConfirm}
           margin="normal"
           required
+          helperText="required"
           fullWidth
           id="confirmPassword"
           label="Confirm Password"
@@ -117,8 +122,13 @@ const ResetPassword = () => {
             ),
           }}
         />
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Reset Password
+        <Button
+          onClick={handleSubmit}
+          type="submit"
+          fullWidth
+          variant="contained"
+        >
+          send
         </Button>
       </form>
     </Container>

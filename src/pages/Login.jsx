@@ -42,11 +42,11 @@ export default function SignIn() {
           padding: matchesSM ? 3 : 2,
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <Typography component="h1" variant='h4' sx={{ fontWeight: 'bold' }}>
+          Log in 
+        </Typography>
         <Typography component="h1" variant={matchesSM ? "h5" : "h6"}>
-          Sign in
+          Welcome!
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -54,6 +54,7 @@ export default function SignIn() {
             required
             fullWidth
             id="email"
+            helperText="required"
             label="Email Address"
             name="email"
             autoComplete="email"
@@ -67,16 +68,26 @@ export default function SignIn() {
             fullWidth
             name="password"
             label="Password"
+            helperText="required"
             type="password"
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Grid container justifyContent="space-between" alignItems="center">
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+            </Grid>
+            <Grid item>
+              <Link to="/forgotpassword" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth
@@ -88,14 +99,9 @@ export default function SignIn() {
               fontSize: matchesSM ? "1rem" : "0.875rem",
             }}
           >
-            Sign In
+            Log in 
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/forgotpassword" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justifyContent="center">
             <Grid item>
               <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}

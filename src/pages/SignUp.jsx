@@ -38,11 +38,11 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant='h4' sx={{ fontWeight: 'bold' }}>
           Sign up
+        </Typography>
+        <Typography component="h1" >
+          Create New Account
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -50,6 +50,7 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                helperText='required'
                 id="lastName"
                 label="User Name"
                 name="lastName"
@@ -61,6 +62,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
+                helperText='required'
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -73,6 +75,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
+                helperText='required'
                 fullWidth
                 name="password"
                 label="Password"
@@ -86,6 +89,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
+                helperText='required'
                 fullWidth
                 name="password"
                 label="Password"
@@ -108,7 +112,7 @@ export default function SignUp() {
           <Grid container justifyContent="center">
             <Grid item>
               <Link to="/login" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Log in 
               </Link>
             </Grid>
           </Grid>
