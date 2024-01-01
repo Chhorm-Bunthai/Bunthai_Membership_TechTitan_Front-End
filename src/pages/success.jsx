@@ -1,32 +1,37 @@
-import { Box, Typography, Button } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { useNavigate } from "react-router-dom";
-import SendIcon from "@mui/icons-material/Send";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Typography, Container, Paper } from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
 
-function Success() {
+function EmailSuccessPage() {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    navigate("/login");
+  const handleBackToHome = () => {
+    navigate('/'); // Adjust the path as needed for your home page or dashboard
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-    >
-      <CheckCircleOutlineIcon sx={{ fontSize: 100, color: "success.main" }} />
-      <Typography variant="h5" align="center" mt={2}>
-        Reset Password link has been sent to your email.
-      </Typography>
-      <Button variant="contained" onClick={handleLoginClick} mb={2}>
-        Back to Login
-      </Button>
-    </Box>
+    <Container component="main" maxWidth="sm">
+      <Paper elevation={3} sx={{ mt: 10, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <EmailIcon color="success" sx={{ fontSize: 60, mt: 1 }} />
+        <Typography component="h1" variant="h5" sx={{ mt: 2 }}>
+          Email Sent Successfully!
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 2 }}>
+          We've sent a message to your email address with further instructions.
+        </Typography>
+        <Button
+          type="button"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 3, mb: 2 }}
+          onClick={handleBackToHome}
+        >
+          Go back to Login 
+        </Button>
+      </Paper>
+    </Container>
   );
 }
 
-export default Success;
+export default EmailSuccessPage;

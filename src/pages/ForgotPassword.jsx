@@ -16,11 +16,10 @@ export default function forgotpassword() {
     event.preventDefault();
     await forgetPassword(email);
     if (user){
-      navigate('/success')
+      await navigate('/success')
     }
     
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
