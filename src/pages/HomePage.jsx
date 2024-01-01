@@ -10,6 +10,7 @@ import { useHook } from "../hooks/useHook";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import { Avatar } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -52,11 +53,13 @@ export default function HomePage() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Above and Beyond
             </Typography>
-            <Link to="/login">
-              <Button style={{ color: "white" }} onClick={handleProfileClick}>
-                {user}
-              </Button>
-            </Link>
+            <Button style={{ color: "white", marginRight: "20px" }} onClick={handleProfileClick}>
+              <div style={{ marginRight: "5px" }}>{user}</div>
+              <Avatar
+                alt="Remy Sharp"
+                src="https://source.unsplash.com/featured/?people"
+              />
+            </Button>
             <Link to="/login">
               <Button style={{ color: "white" }} onClick={handleClick}>
                 lOGOUT

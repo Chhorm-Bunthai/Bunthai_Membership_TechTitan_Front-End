@@ -1,7 +1,7 @@
 
 function Profile() {
   return (
-    <div>My profile</div>
+    <div>Hello My name is Chhorm Bunthai</div>
   )
 }
 

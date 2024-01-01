@@ -22,7 +22,7 @@ export default function SignUp() {
     event.preventDefault();
     if (password === passwordConfirm) {
       await signup(name, email, password, passwordConfirm);
-      navigate('/login')
+      navigate("/login");
     } else {
       console.log("password does not match");
     }
