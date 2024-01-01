@@ -15,10 +15,9 @@ export default function forgotpassword() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await forgetPassword(email);
-    if (user){
-      await navigate('/success')
+    if (user) {
+      await navigate("/success");
     }
-    
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -28,17 +27,17 @@ export default function forgotpassword() {
           marginTop: 8,
           display: "flex",
           flexDirection: "column",
-          alignItems: "start",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h4">
           Forgot Password?
         </Typography>
-        <Typography component="h1" sx={{ fontWeight: 500, mt: 1 }}>
+        <Typography component="h1" sx={{ fontWeight: 500, mt:1, textAlign: 'center' }}>
           Please provide your email, We will send verification link to you gmail
           account.
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
           <TextField
             margin="normal"
             required
@@ -51,12 +50,7 @@ export default function forgotpassword() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ my: 2 }}>
             send
           </Button>
         </Box>
