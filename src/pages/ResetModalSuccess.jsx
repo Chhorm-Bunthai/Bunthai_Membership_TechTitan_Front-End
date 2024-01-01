@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useHook } from "../hooks/useHook";
 import { Box, Button, Typography, Container, Paper } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function ResetModalSuccess() {
