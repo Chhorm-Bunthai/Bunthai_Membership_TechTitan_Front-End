@@ -6,21 +6,50 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useState } from "react";
 import { useHook } from "../hooks/useHook";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm, Controller } from "react-hook-form";
+import { addErrorIntoField } from "../utils/ErrorField";
+import ErrorMessage from "../utils/ErrorMessage";
 
+//  create Schema validation
+const Schema = yup.object({
+  fullname: yup.string().required("Name is Required"),
+  email: yup.string().email().required("Email is required"),
+  password: yup.string().required("password is required"),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Password does not match"),
+});
 export default function SignUp() {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      fullname: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
+    },
+    resolver: yupResolver(Schema),
+  });
+
+  console.log(errors, "errors");
   const navigate = useNavigate();
   const { signup } = useHook();
-  const [name, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async (formData) => {
+    const { fullname, email, password, passwordConfirm } = formData;
     if (password === passwordConfirm) {
-      await signup(name, email, password, passwordConfirm);
-      navigate("/login");
+      try {
+        await signup(fullname, email, password, passwordConfirm);
+        console.log(fullname, email, password, passwordConfirm);
+        navigate("/login");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log("password does not match");
     }
@@ -40,61 +69,86 @@ export default function SignUp() {
           Sign up
         </Typography>
         <Typography component="h1">Create New Account</Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit(handleFormSubmit)}
+          sx={{ mt: 3 }}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                helperText="required"
-                id="lastName"
-                label="User Name"
-                name="lastName"
-                autoComplete="family-name"
-                value={name}
-                onChange={(e) => setUserName(e.target.value)}
+              <Controller
+                name="fullname"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors?.fullname)}
+                    fullWidth
+                    id="lastname"
+                    label="FullName"
+                  />
+                )}
               />
+              {errors.fullname ? (
+                <ErrorMessage message={errors.fullname.message} />
+              ) : null}
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                helperText="required"
-                fullWidth
-                id="email"
-                label="Email Address"
+              <Controller
                 name="email"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors?.email)}
+                    fullWidth
+                    id="email"
+                    label="email"
+                  />
+                )}
               />
+              {errors.email ? (
+                <ErrorMessage message={errors.email.message} />
+              ) : null}
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                helperText="required"
-                fullWidth
+              <Controller
                 name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors?.password)}
+                    fullWidth
+                    id="password"
+                    label="password"
+                    type="password"
+                  />
+                )}
               />
+              {errors.password ? (
+                <ErrorMessage message={errors.password.message} />
+              ) : null}
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                helperText="required"
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="passwordConfirm"
-                autoComplete="new-password"
-                value={passwordConfirm}
-                onChange={(e) => setPasswordConfirm(e.target.value)}
+              <Controller
+                name="passwordConfirm"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors?.passwordConfirm)}
+                    fullWidth
+                    id="passwordConfirm"
+                    label="passwordConfirm"
+                    type="password"
+                  />
+                )}
               />
+              {errors.passwordConfirm ? (
+                <ErrorMessage message={errors.passwordConfirm.message} />
+              ) : null}
             </Grid>
           </Grid>
           <Button

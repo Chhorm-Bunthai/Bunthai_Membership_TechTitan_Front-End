@@ -47,7 +47,18 @@ export default function SignIn() {
         <Typography component="h1" variant={matchesSM ? "h5" : "h6"}>
           Welcome!
         </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          {error ? (
+            <Box sx={{ mb: 1 }}>
+              <Alert severity="error">
+                <AlertTitle>{error}</AlertTitle>
+                Please Checkout email or Password again
+              </Alert>
+            </Box>
+          ) : (
+            ""
+          )}
           <TextField
             margin="normal"
             required
@@ -74,16 +85,7 @@ export default function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error ? (
-            <Box sx={{ mb: 1 }}>
-              <Alert severity="error">
-                <AlertTitle>{error}</AlertTitle>
-                Please Checkout email or Password again
-              </Alert>
-            </Box>
-          ) : (
-            ""
-          )}
+
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
               <FormControlLabel
