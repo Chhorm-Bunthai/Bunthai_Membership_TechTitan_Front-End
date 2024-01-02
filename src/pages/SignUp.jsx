@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
@@ -38,19 +36,17 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant='h4' sx={{ fontWeight: 'bold' }}>
+        <Typography component="h1" variant="h4" sx={{ fontWeight: "bold" }}>
           Sign up
         </Typography>
-        <Typography component="h1" >
-          Create New Account
-        </Typography>
+        <Typography component="h1">Create New Account</Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                helperText='required'
+                helperText="required"
                 id="lastName"
                 label="User Name"
                 name="lastName"
@@ -62,7 +58,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
-                helperText='required'
+                helperText="required"
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -75,7 +71,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
-                helperText='required'
+                helperText="required"
                 fullWidth
                 name="password"
                 label="Password"
@@ -89,7 +85,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
-                helperText='required'
+                helperText="required"
                 fullWidth
                 name="password"
                 label="Password"
@@ -112,7 +108,7 @@ export default function SignUp() {
           <Grid container justifyContent="center">
             <Grid item>
               <Link to="/login" variant="body2">
-                Already have an account? Log in 
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>

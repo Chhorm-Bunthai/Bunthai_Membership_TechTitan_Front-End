@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState('')
   const signup = async (name, email, password, passwordConfirm) => {
     const data = {
       name,
@@ -40,7 +41,8 @@ function AuthProvider({ children }) {
       // console.log(res.data.data, "hh");
       localStorage.setItem("jwt", JSON.stringify(res?.data?.data));
     } catch (error) {
-      console.log(error);
+      console.log('erorror',error.response.data.message)
+      setError(error.response.data.message)
     }
   };
   const logout = async () => {
@@ -93,6 +95,7 @@ function AuthProvider({ children }) {
     logout,
     resetPassword,
     forgetPassword,
+    error
   };
   return (
     <AuthContext.Provider value={valueToShare}>{children}</AuthContext.Provider>

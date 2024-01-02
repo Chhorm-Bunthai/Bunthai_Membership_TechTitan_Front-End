@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -8,16 +6,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
+import { Alert, AlertTitle } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useHook } from "../hooks/useHook";
+import { useState } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const { login } = useHook();
+  const { login, error } = useHook();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -42,8 +41,8 @@ export default function SignIn() {
           padding: matchesSM ? 3 : 2,
         }}
       >
-        <Typography component="h1" variant='h4' sx={{ fontWeight: 'bold' }}>
-          Log in 
+        <Typography component="h1" variant="h4" sx={{ fontWeight: "bold" }}>
+          Log in
         </Typography>
         <Typography component="h1" variant={matchesSM ? "h5" : "h6"}>
           Welcome!
@@ -75,6 +74,16 @@ export default function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error ? (
+            <Box sx={{ mb: 1 }}>
+              <Alert severity="error">
+                <AlertTitle>{error}</AlertTitle>
+                Please Checkout email or Password again
+              </Alert>
+            </Box>
+          ) : (
+            ""
+          )}
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
               <FormControlLabel
@@ -99,7 +108,7 @@ export default function SignIn() {
               fontSize: matchesSM ? "1rem" : "0.875rem",
             }}
           >
-            Log in 
+            Log in
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
