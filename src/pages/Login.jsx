@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -8,16 +6,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
+import { Alert, AlertTitle } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useHook } from "../hooks/useHook";
+import { useAuthHook } from "../hooks/useAuthHook";
+import { useState } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const { login } = useHook();
+  const { login, error } = useAuthHook();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -42,18 +41,30 @@ export default function SignIn() {
           padding: matchesSM ? 3 : 2,
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant={matchesSM ? "h5" : "h6"}>
-          Sign in
+        <Typography component="h1" variant="h4" sx={{ fontWeight: "bold" }}>
+          Log in
         </Typography>
+        <Typography component="h1" variant={matchesSM ? "h5" : "h6"}>
+          Welcome!
+        </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          {error ? (
+            <Box sx={{ mb: 1 }}>
+              <Alert severity="error">
+                <AlertTitle>{error}</AlertTitle>
+                Please Checkout email or Password again
+              </Alert>
+            </Box>
+          ) : (
+            ""
+          )}
           <TextField
             margin="normal"
             required
             fullWidth
             id="email"
+            helperText="required"
             label="Email Address"
             name="email"
             autoComplete="email"
@@ -67,16 +78,27 @@ export default function SignIn() {
             fullWidth
             name="password"
             label="Password"
+            helperText="required"
             type="password"
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
+          <Grid container justifyContent="space-between" alignItems="center">
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+            </Grid>
+            <Grid item>
+              <Link to="/forgotpassword" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth
@@ -88,14 +110,9 @@ export default function SignIn() {
               fontSize: matchesSM ? "1rem" : "0.875rem",
             }}
           >
-            Sign In
+            Log in
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/forgotpassword" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justifyContent="center">
             <Grid item>
               <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}

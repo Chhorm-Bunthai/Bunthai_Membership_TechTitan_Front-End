@@ -1,7 +1,6 @@
-
 function Profile() {
   return (
-    <div>Hello My name is Chhorm Bunthai</div>
+    <div>Welcome to profile page</div>
   )
 }
 
