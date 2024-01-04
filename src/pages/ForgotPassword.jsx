@@ -5,12 +5,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import { useHook } from "../hooks/useHook";
+import { useAuthHook } from "../hooks/useAuthHook";
 import { useNavigate } from "react-router-dom";
 
 export default function forgotpassword() {
   const navigate = useNavigate();
-  const { forgetPassword, user } = useHook();
+  const { forgetPassword, user } = useAuthHook();
   const [email, setEmail] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();

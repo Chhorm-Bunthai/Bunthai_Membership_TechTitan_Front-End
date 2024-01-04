@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useHook } from "../hooks/useHook";
+import { useAuthHook } from "../hooks/useAuthHook";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -39,19 +39,14 @@ export default function SignUp() {
 
   console.log(errors, "errors");
   const navigate = useNavigate();
-  const { signup } = useHook();
+  const { signup } = useAuthHook();
   const handleFormSubmit = async (formData) => {
     const { fullname, email, password, passwordConfirm } = formData;
-    if (password === passwordConfirm) {
-      try {
-        await signup(fullname, email, password, passwordConfirm);
-        console.log(fullname, email, password, passwordConfirm);
-        navigate("/login");
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log("password does not match");
+    try {
+      await signup(fullname, email, password, passwordConfirm);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

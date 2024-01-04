@@ -11,12 +11,12 @@ import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import { Alert, AlertTitle } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useHook } from "../hooks/useHook";
+import { useAuthHook } from "../hooks/useAuthHook";
 import { useState } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const { login, error } = useHook();
+  const { login, error } = useAuthHook();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up("sm"));
 

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
-import { useHook } from "../hooks/useHook";
+import { useAuthHook } from "../hooks/useAuthHook";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -23,7 +23,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function HomePage() {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-  const { logout } = useHook();
+  const { logout } = useAuthHook();
   const handleProfileClick = () => {
     navigate("/profile");
   };

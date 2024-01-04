@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Typography, Container, Paper } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
@@ -7,7 +6,7 @@ function EmailSuccessPage() {
   const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    navigate("/"); // Adjust the path as needed for your home page or dashboard
+    navigate("/"); 
   };
 
   return (
@@ -27,7 +26,7 @@ function EmailSuccessPage() {
           Email Sent Successfully!
         </Typography>
         <Typography variant="body1" sx={{ mt: 2 }}>
-          We've sent a message to your email address with further instructions.
+          We have sent a message to your email address with further instructions.
         </Typography>
         <Button
           type="button"

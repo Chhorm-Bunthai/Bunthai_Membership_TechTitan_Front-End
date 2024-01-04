@@ -1,11 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useHook } from "../hooks/useHook";
-import { Box, Button, Typography, Container, Paper } from "@mui/material";
+import { useAuthHook } from "../hooks/useAuthHook";
+import { Button, Typography, Container, Paper } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function ResetModalSuccess() {
-  const { user } = useHook();
+  const { user } = useAuthHook();
   const navigate = useNavigate();
 
   const handleBackToLogin = () => {
