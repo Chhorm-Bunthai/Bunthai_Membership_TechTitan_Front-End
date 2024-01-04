@@ -41,8 +41,8 @@ function AuthProvider({ children }) {
       // console.log(res.data.data, "hh");
       localStorage.setItem("jwt", JSON.stringify(res?.data?.data));
     } catch (error) {
-      console.log('erorror',error.response.data.message)
-      setError(error.response.data.message)
+      console.log('erorror',error.response)
+      setError(error?.response?.data)
     }
   };
   const logout = async () => {
@@ -79,9 +79,6 @@ function AuthProvider({ children }) {
         }
       );
       console.log(res.data.status);
-      // if (res.data.status){
-      //   navigate('/login')
-      // }
       setUser(res.data.status);
     } catch (error) {
       console.log(error);

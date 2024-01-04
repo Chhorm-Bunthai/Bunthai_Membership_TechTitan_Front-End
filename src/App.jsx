@@ -9,6 +9,7 @@ import Success from "./pages/ForgotEmailSuccess";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResetPassword from "./pages/ResetPassword";
 import ResetModalSuccess from "./pages/ResetModalSuccess";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/success" element={<Success />} />
         <Route path="/resetSuccess" element={<ResetModalSuccess />} />
+        <Route path="/verifyEmail" element={<VerifyEmail />}/>
+        <Route path=""/>
       </Routes>
     </BrowserRouter>
   );

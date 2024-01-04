@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
+
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,7 +13,8 @@ import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { addErrorIntoField } from "../utils/ErrorField";
 import ErrorMessage from "../utils/ErrorMessage";
-
+import { useState } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
 //  create Schema validation
 const Schema = yup.object({
   fullname: yup.string().required("Name is Required"),
@@ -36,6 +38,10 @@ export default function SignUp() {
     },
     resolver: yupResolver(Schema),
   });
+  const [loading, setLoading] = useState(true);
+  function handleClick() {
+    setLoading(true);
+  }
 
   console.log(errors, "errors");
   const navigate = useNavigate();
@@ -154,6 +160,14 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
+          <LoadingButton
+            onClick={handleClick}
+            loading={loading}
+            variant="outlined"
+            disabled
+          >
+            <span>disabled</span>
+          </LoadingButton>
           <Grid container justifyContent="center">
             <Grid item>
               <Link to="/login" variant="body2">

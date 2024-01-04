@@ -16,7 +16,7 @@ import { useState } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const { login, error } = useAuthHook();
+  const { login, error, user } = useAuthHook();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -24,6 +24,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
+    console.log(user);
     event.preventDefault();
     await login(email, password);
     navigate("/");
@@ -49,11 +50,21 @@ export default function SignIn() {
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          {error ? (
+          {error?.error?.statusCode === 403 ? (
             <Box sx={{ mb: 1 }}>
               <Alert severity="error">
-                <AlertTitle>{error}</AlertTitle>
-                Please Checkout email or Password again
+                <AlertTitle>{error.message}</AlertTitle>
+                Please verify your account before login
+              </Alert>
+            </Box>
+          ) : (
+            ""
+          )}
+          {error?.error?.statusCode === 401 ? (
+            <Box sx={{ mb: 1 }}>
+              <Alert severity="error">
+                <AlertTitle>{error.message}</AlertTitle>
+                Please Check email or password again
               </Alert>
             </Box>
           ) : (
@@ -85,7 +96,6 @@ export default function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
               <FormControlLabel
