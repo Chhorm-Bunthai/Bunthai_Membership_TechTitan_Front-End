@@ -5,9 +5,10 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const ResetPassword = () => {
   const { resetPassword } = useAuthHook();
@@ -18,6 +19,7 @@ const ResetPassword = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -32,6 +34,7 @@ const ResetPassword = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const isResetSuccessful = await resetPassword(
       password,
       passwordConfirm,
@@ -121,14 +124,23 @@ const ResetPassword = () => {
             ),
           }}
         />
-        <Button
+        {/* <Button
           onClick={handleSubmit}
           type="submit"
           fullWidth
           variant="contained"
         >
           send
-        </Button>
+        </Button> */}
+        <LoadingButton
+          loading={loading}
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ my: 2 }}
+        >
+          Submit
+        </LoadingButton>
       </form>
     </Container>
   );

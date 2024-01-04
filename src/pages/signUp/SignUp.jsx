@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import TextField from "@mui/material/TextField";
@@ -7,14 +6,15 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
-import { addErrorIntoField } from "../utils/ErrorField";
-import ErrorMessage from "../utils/ErrorMessage";
+import { addErrorIntoField } from "../../utils/ErrorField";
+import ErrorMessage from "../../utils/ErrorMessage";
 import { useState } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
+
 //  create Schema validation
 const Schema = yup.object({
   fullname: yup.string().required("Name is Required"),
@@ -38,19 +38,18 @@ export default function SignUp() {
     },
     resolver: yupResolver(Schema),
   });
-  const [loading, setLoading] = useState(true);
-  function handleClick() {
-    setLoading(true);
-  }
+  const [loading, setLoading] = useState(false);
+  function handleClick() {}
 
   console.log(errors, "errors");
   const navigate = useNavigate();
   const { signup } = useAuthHook();
   const handleFormSubmit = async (formData) => {
+    setLoading(true);
     const { fullname, email, password, passwordConfirm } = formData;
     try {
       await signup(fullname, email, password, passwordConfirm);
-      navigate("/login");
+      navigate("/emailSendSuccess");
     } catch (error) {
       console.log(error);
     }
@@ -152,21 +151,15 @@ export default function SignUp() {
               ) : null}
             </Grid>
           </Grid>
-          <Button
+          <LoadingButton
+            onClick={handleClick}
+            loading={loading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
-          </Button>
-          <LoadingButton
-            onClick={handleClick}
-            loading={loading}
-            variant="outlined"
-            disabled
-          >
-            <span>disabled</span>
+            <span>Sign Up</span>
           </LoadingButton>
           <Grid container justifyContent="center">
             <Grid item>

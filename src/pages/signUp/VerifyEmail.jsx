@@ -58,7 +58,6 @@ const VerifyEmail = () => {
             <Typography
               sx={{
                 textAlign: "center",
-                marginBottom: "24px",
                 fontSize: "16px",
               }}
               variant="body2"
@@ -73,7 +72,7 @@ const VerifyEmail = () => {
               sx={{ margin: "auto", marginBottom: "24px" }}
               variant="contained"
             >
-              LOGIN TO YOUR ACCOUNT
+              Back to Login
             </Button>
           </CardActions>
           <Typography

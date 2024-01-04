@@ -6,7 +6,7 @@ function EmailSuccessPage() {
   const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
@@ -25,18 +25,26 @@ function EmailSuccessPage() {
         <Typography component="h1" variant="h5" sx={{ mt: 2 }}>
           Email Sent Successfully!
         </Typography>
-        <Typography variant="body1" sx={{ mt: 2 }}>
-          We have sent a message to your email address with further instructions.
+        <Typography variant="body1" sx={{ mt: 2, textAlign: "center" }}>
+          We have sent a message to your email address with further
+          instructions.
         </Typography>
         <Button
           type="button"
           variant="contained"
           color="primary"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2, marginBottom: "24px" }}
           onClick={handleBackToHome}
         >
           Go back to Login
         </Button>
+        <Typography
+          sx={{ textAlign: "center", fontSize: "16px" }}
+          variant="body2"
+          color="text.secondary"
+        >
+          Thank you for choosing our application.
+        </Typography>
       </Paper>
     </Container>
   );

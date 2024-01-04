@@ -1,15 +1,16 @@
 import "./App.css";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-import HomePage from "./pages/HomePage";
-import PrivateRoutes from "./pages/PrivateRoutes";
-import Profile from "./pages/Profile";
-import Success from "./pages/ForgotEmailSuccess";
+import SignUp from "./pages/signUp/SignUp";
+import SignIn from "./pages/login/Login";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import HomePage from "./pages/homePage/HomePage";
+import PrivateRoutes from "./pages/privateRoutes/PrivateRoutes";
+import Profile from "./pages/profile/Profile";
+import Success from "./pages/forgotPassword/ForgotEmailSuccess";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ResetPassword from "./pages/ResetPassword";
-import ResetModalSuccess from "./pages/ResetModalSuccess";
-import VerifyEmail from "./pages/VerifyEmail";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
+import ResetModalSuccess from "./pages/resetPassword/ResetSuccess";
+import VerifyEmail from "./pages/signUp/VerifyEmail";
+import EmailSendingSuccess from "./pages/signUp/EmailSendingSuccess";
 
 function App() {
   return (
@@ -25,8 +26,8 @@ function App() {
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/success" element={<Success />} />
         <Route path="/resetSuccess" element={<ResetModalSuccess />} />
-        <Route path="/verifyEmail" element={<VerifyEmail />}/>
-        <Route path=""/>
+        <Route path="/verifyEmail" element={<VerifyEmail />} />
+        <Route path="emailSendSuccess" element={<EmailSendingSuccess />} />
       </Routes>
     </BrowserRouter>
   );

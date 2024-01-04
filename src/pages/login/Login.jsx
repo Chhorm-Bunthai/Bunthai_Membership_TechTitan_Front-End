@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import { Alert, AlertTitle } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import { useState } from "react";
 
 export default function SignIn() {
