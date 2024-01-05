@@ -1,18 +1,20 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function forgotpassword() {
   const navigate = useNavigate();
   const { forgetPassword, user } = useAuthHook();
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
     await forgetPassword(email);
     if (user) {
@@ -33,11 +35,19 @@ export default function forgotpassword() {
         <Typography component="h1" variant="h4">
           Forgot Password?
         </Typography>
-        <Typography component="h1" sx={{ fontWeight: 500, mt:1, textAlign: 'center' }}>
+        <Typography
+          component="h1"
+          sx={{ fontWeight: 500, mt: 1, textAlign: "center" }}
+        >
           Please provide your email, We will send verification link to you gmail
           account.
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1, width: "100%" }}
+        >
           <TextField
             margin="normal"
             required
@@ -50,9 +60,15 @@ export default function forgotpassword() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Button type="submit" fullWidth variant="contained" sx={{ my: 2 }}>
-            send
-          </Button>
+          <LoadingButton
+            loading={loading}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ my: 2 }}
+          >
+            <span>Sign Up</span>
+          </LoadingButton>
         </Box>
       </Box>
     </Container>

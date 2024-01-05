@@ -6,11 +6,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import { Avatar } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -36,6 +35,7 @@ export default function HomePage() {
       setUser(user?.user?.name);
     }
   }, []);
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -53,12 +53,11 @@ export default function HomePage() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Above and Beyond
             </Typography>
-            <Button style={{ color: "white", marginRight: "20px" }} onClick={handleProfileClick}>
-              <div style={{ marginRight: "5px" }}>{user}</div>
-              <Avatar
-                alt="Remy Sharp"
-                src="https://source.unsplash.com/featured/?people"
-              />
+            <Button
+              style={{ color: "white", marginRight: "20px" }}
+              onClick={handleProfileClick}
+            >
+              <div>{user}</div>
             </Button>
             <Link to="/login">
               <Button style={{ color: "white" }} onClick={handleClick}>

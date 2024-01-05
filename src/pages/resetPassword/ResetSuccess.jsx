@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthHook } from "../hooks/useAuthHook";
+import { useAuthHook } from "../../hooks/useAuthHook";
 import { Button, Typography, Container, Paper } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
@@ -28,9 +28,9 @@ function ResetModalSuccess() {
       >
         <CheckCircleIcon color="success" sx={{ fontSize: 60, mt: 1 }} />
         <Typography component="h1" variant="h5" sx={{ mt: 2 }}>
-          Success
+          Reset password successfully!
         </Typography>
-        <Typography variant="body1" sx={{ mt: 2 }}>
+        <Typography variant="body1" sx={{ mt: 2, textAlign: "center" }}>
           Your password has been successfully reset. You can now log in with
           your new password.
         </Typography>
@@ -38,11 +38,18 @@ function ResetModalSuccess() {
           type="button"
           variant="contained"
           color="primary"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2, marginBottom: "24px" }}
           onClick={handleBackToLogin}
         >
           Back to Login
         </Button>
+        <Typography
+          sx={{ textAlign: "center", fontSize: "16px" }}
+          variant="body2"
+          color="text.secondary"
+        >
+          Thank you for choosing our application.
+        </Typography>
       </Paper>
     </Container>
   );
