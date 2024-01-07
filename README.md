@@ -1,10 +1,8 @@
 # Project Overview
 Membership and authentication are the bedrock of user engagement and security in any application. These essential components empower users to register, log in, verify their email, recover forgotten passwords, and reset their passwords, ensuring a seamless and secure user experience.
-
-By prioritizing robust membership and authentication systems, we not only enhance user accessibility but also fortify the application against unauthorized access and potential security vulnerabilities. This approach creates a resilient and protected environment, instilling confidence in users as they interact with the application's features and content.
-
+this membership not only enhances user accessibility but also fortifies the application against unauthorized access and potential security vulnerabilities.
 ## App features
-1. Signup: Users can register a new account by providing their name, email, password, and confirming the password.
+1. Signup: Users can register a new account by providing their name, email, and password, and confirming the password.
 
 2. Email Verification: After users sign up, a confirmation email is sent to their email account to verify their email address.
 
