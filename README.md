@@ -13,7 +13,7 @@ this membership not only enhances user accessibility but also fortifies the appl
 5. Forgot Password: Users can reset their password by providing their email address. A link to reset the password will be sent to their email.
 
 6. Reset Password: After receiving the password reset link in their email, users can set a new password for their account.
-
+[![App demo video](http://img.youtube.com/vi/C4puN0d6GOg/0.jpg)](http://www.youtube.com/watch?v=C4puN0d6GOg)
 # Technologies used 
 - React Js
 - Javascript
