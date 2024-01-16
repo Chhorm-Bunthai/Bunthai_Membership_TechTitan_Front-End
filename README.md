@@ -14,7 +14,7 @@ this membership not only enhances user accessibility but also fortifies the appl
 
 6. Reset Password: After receiving the password reset link in their email, users can set a new password for their account.
 # Video Demo: Click on thumbnail to view
-[![App demo video](http://img.youtube.com/vi/C4puN0d6GOg/0.jpg)](http://www.youtube.com/watch?v=C4puN0d6GOg)
+[![App demo video](http://img.youtube.com/vi/d1lNcZdv1oo/0.jpg)](http://www.youtube.com/watch?v=d1lNcZdv1oo)
 # Technologies used 
 - React Js
 - Javascript
